@@ -1,0 +1,487 @@
+﻿<Window x:Class="StuldastolClient.Views.CatalogMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StuldastolClient.Views"
+        mc:Ignorable="d"
+        Title="Каталог" Height="980" Width="1920" WindowState="Maximized" Icon="/Images/icon.ico" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Заголовок -->
+            <RowDefinition Height="Auto"/>
+            <!-- Категории -->
+            <RowDefinition Height="Auto"/>
+            <!-- Фильтр -->
+            <RowDefinition Height="*"/>
+            <!-- Каталог с прокруткой -->
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <StackPanel Grid.Row="0" Height="100" VerticalAlignment="Top">
+            <TextBlock Text="КАТАЛОГ" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="55" Margin="0 15 0 0"></TextBlock>
+        </StackPanel>
+        <Button x:Name="GoToCartButton" Width="100" Height="100" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 5 30 0" Click="GoToCartButton_Click" Grid.Row="0">
+            <Image Source="/Images/CartBut.png" Width="80" Height="80"></Image>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFE6E6E6"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="MyOrdersButton" Width="100" Height="100" Click="MyOrdersButton_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 5 130 0" Grid.Row="0">
+            <Image Source="/Images/OrdersBut.png" Width="80" Height="80"></Image>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFE6E6E6"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Name="Back" Height="45" Width="45" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 20 0 0" Click="Back_Click" Grid.Row="0">
+            <Image Source="/Images/Back.png" Stretch="Uniform"/>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFE6E6E6"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- Фоновые изображения -->
+        <Image Source="/Images/stoneCatalog.png" Width="400" Height="350" Margin="546,204,974,410" Grid.RowSpan="4"/>
+        <Image Source="/Images/stoneCatalog.png" Width="400" Height="350" Margin="1408,604,112,10" Grid.RowSpan="4"/>
+        <Image Source="/Images/stoneCatalog2.png" Width="400" Height="350" Margin="1138,-30,382,644" Grid.RowSpan="4"/>
+
+        <!-- Верхняя панель с категориями -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20" Height="250">
+            <Button x:Name="NaraChairButton" Click="NaraChairButton_Click" Width="267" Height="250" Margin="0,0,50,0">
+                <Image Source="/Images/NaraCat.jpg" Stretch="Uniform"/>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF2D2D2D"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF636363"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="KyotoChairButton" Click="KyotoChairButton_Click" Width="267" Height="250" Margin="0,0,50,0">
+                <Image Source="/Images/KiotoCat.jpg" Stretch="Uniform"/>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF2D2D2D"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF636363"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="TablesButton" Click="TablesButton_Click" Width="267" Height="250">
+                <Image Source="/Images/StolCat.jpg" Stretch="Uniform"/>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF2D2D2D"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF636363"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+
+        <!-- Панель фильтров -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,0" Height="50">
+            
+            <Button x:Name="ResetFilterButton" Click="ResetFilterButton_Click" Width="50" Height="50" Margin="0,0,20,0">
+                <Image Source="/Images/Otmena.png"></Image>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="{x:Null}"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC7C7C7"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Каталог" FontSize="35" Height="50" FontFamily="Century Gothic"/>
+                <Image Source="/Images/Sr.png" Height="30" Width="30" Margin="10,0,0,0"/>
+                <TextBlock x:Name="FilterStatusTextBlock" Text="" FontSize="35" Height="50" Margin="10,0,20,0" FontFamily="Century Gothic"/>
+            </StackPanel>
+            <!-- Новые элементы управления для фильтрации -->
+            <TextBlock Text="Цена от:" FontSize="20" FontFamily="Century Gothic" Margin="50,0,5,0" VerticalAlignment="Center"/>
+            <TextBox x:Name="PriceFromTextBox" Width="100" Height="30" FontSize="16" VerticalAlignment="Center"/>
+            <TextBlock Text="до:" FontSize="20" FontFamily="Century Gothic" Margin="10,0,5,0" VerticalAlignment="Center"/>
+            <TextBox x:Name="PriceToTextBox" Width="100" Height="30" FontSize="16" VerticalAlignment="Center"/>
+            <TextBlock Text="Тип дерева:" FontSize="20" FontFamily="Century Gothic" Margin="20,0,5,0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="WoodTypeComboBox" Width="150" Height="30" FontSize="16" VerticalAlignment="Center">
+                <ComboBox.Style>
+                    <Style TargetType="{x:Type ComboBox}">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="BorderBrush" Value="#FF2D2D2D"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ComboBox}">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ContentPresenter x:Name="ContentSite" 
+                                                              Grid.Column="0"
+                                                              IsHitTestVisible="False" 
+                                                              Content="{TemplateBinding SelectionBoxItem}"
+                                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                              Margin="5,0,0,0"
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Left"/>
+                                            <ToggleButton x:Name="ToggleButton" 
+                                                          Grid.Column="1"
+                                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                          Focusable="false"
+                                                          ClickMode="Press">
+                                                <ToggleButton.Template>
+                                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                        <Border Background="Transparent">
+                                                            <Path x:Name="Arrow" 
+                                                                  Fill="#FF2D2D2D" 
+                                                                  HorizontalAlignment="Center" 
+                                                                  VerticalAlignment="Center" 
+                                                                  Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </ToggleButton.Template>
+                                            </ToggleButton>
+                                            <Popup x:Name="Popup" 
+                                                   Placement="Bottom" 
+                                                   IsOpen="{TemplateBinding IsDropDownOpen}" 
+                                                   AllowsTransparency="True" 
+                                                   Focusable="False" 
+                                                   PopupAnimation="Slide">
+                                                <Border x:Name="DropDownBorder" 
+                                                        Background="White" 
+                                                        BorderBrush="#FF2D2D2D" 
+                                                        BorderThickness="1" 
+                                                        CornerRadius="5" 
+                                                        MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                                    <ScrollViewer Margin="4,6,4,6">
+                                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                    </ScrollViewer>
+                                                </Border>
+                                            </Popup>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="#FF636363"/>
+                                        </Trigger>
+                                        <Trigger Property="IsDropDownOpen" Value="True">
+                                            <Setter Property="BorderBrush" Value="#FF636363"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
+            <TextBlock Text="Тип масла:" FontSize="20" FontFamily="Century Gothic" Margin="20,0,5,0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="OilColorComboBox" Width="150" Height="30" FontSize="16" VerticalAlignment="Center">
+                <ComboBox.Style>
+                    <Style TargetType="{x:Type ComboBox}">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="BorderBrush" Value="#FF2D2D2D"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ComboBox}">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="5">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ContentPresenter x:Name="ContentSite" 
+                                                              Grid.Column="0"
+                                                              IsHitTestVisible="False" 
+                                                              Content="{TemplateBinding SelectionBoxItem}"
+                                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                              Margin="5,0,0,0"
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Left"/>
+                                            <ToggleButton x:Name="ToggleButton" 
+                                                          Grid.Column="1"
+                                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                          Focusable="false"
+                                                          ClickMode="Press">
+                                                <ToggleButton.Template>
+                                                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                        <Border Background="Transparent">
+                                                            <Path x:Name="Arrow" 
+                                                                  Fill="#FF2D2D2D" 
+                                                                  HorizontalAlignment="Center" 
+                                                                  VerticalAlignment="Center" 
+                                                                  Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </ToggleButton.Template>
+                                            </ToggleButton>
+                                            <Popup x:Name="Popup" 
+                                                   Placement="Bottom" 
+                                                   IsOpen="{TemplateBinding IsDropDownOpen}" 
+                                                   AllowsTransparency="True" 
+                                                   Focusable="False" 
+                                                   PopupAnimation="Slide">
+                                                <Border x:Name="DropDownBorder" 
+                                                        Background="White" 
+                                                        BorderBrush="#FF2D2D2D" 
+                                                        BorderThickness="1" 
+                                                        CornerRadius="5" 
+                                                        MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                                    <ScrollViewer Margin="4,6,4,6">
+                                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                    </ScrollViewer>
+                                                </Border>
+                                            </Popup>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="#FF636363"/>
+                                        </Trigger>
+                                        <Trigger Property="IsDropDownOpen" Value="True">
+                                            <Setter Property="BorderBrush" Value="#FF636363"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
+            <Button x:Name="ApplyFiltersButton" Content="Применить" Width="100" Height="30" Margin="20,0,0,0" Click="ApplyFiltersButton_Click" VerticalAlignment="Center">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF2D2D2D"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF636363"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <!-- Кнопки сортировки по цене -->
+            <Button x:Name="SortPriceAscButton" Content="↑ Цена" Width="80" Height="30" Margin="20,00,0,0" Click="SortPriceAscButton_Click" VerticalAlignment="Center">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF2D2D2D"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF636363"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="SortPriceDescButton" Content="↓ Цена" Width="80" Height="30" Margin="10,0,0,0" Click="SortPriceDescButton_Click" VerticalAlignment="Center">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF2D2D2D"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF636363"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+
+        <!-- Каталог товаров с прокруткой -->
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="20,0,20,20">
+            <ItemsControl x:Name="ProductsItemsControl">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="20" Margin="10" Padding="10" Width="330" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                            <StackPanel>
+                                <Image Source="{Binding ImagePath}" Height="330" Stretch="Uniform" />
+                                <StackPanel Height="48" Margin="0,10,0,20">
+                                    <TextBlock Text="{Binding Name}" 
+                                       FontSize="18" 
+                                       TextAlignment="Center" 
+                                       FontFamily="Century Gothic"
+                                       TextWrapping="Wrap"
+                                       TextTrimming="CharacterEllipsis" />
+                                </StackPanel>
+                                <TextBlock Text="{Binding Price, StringFormat={}{0:N2} р}" 
+                                       FontSize="18" 
+                                       TextAlignment="Center" 
+                                       Foreground="#FF2D2D2D" 
+                                       FontFamily="Century Gothic" 
+                                       Margin="0 0 0 0" 
+                                       HorizontalAlignment="Right" />
+                                <StackPanel Orientation="Horizontal" Margin="0,-25,0,0" HorizontalAlignment="Left" >
+                                    <Button Width="40" Height="40" Margin="0,0,5,0" Name="AddCart" Click="AddCart_Click" >
+                                        <Image Source="/Images/Cart.png" Width="30" Height="30"></Image>
+                                        <Button.Style>
+                                            <Style TargetType="{x:Type Button}">
+                                                <Setter Property="Background" Value="White"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#FFC7C7C7"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Window>

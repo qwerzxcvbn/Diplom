@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{06C2D868-C08A-4652-8EF6-C7542FE91BD7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>StuldastolClient</RootNamespace>
+    <AssemblyName>StuldastolClient</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net48\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.5.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=4.12.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.4.12.1\lib\net48\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=4.12.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.4.12.0\lib\net48\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCoder, Version=1.6.0.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.6.0\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.9.0.5\lib\net462\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Formats.Asn1, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Asn1.8.0.1\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.0\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.0\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.0\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.0\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AppModule.cs" />
+    <Compile Include="CartItems.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\DoneConsultWindow.xaml.cs">
+      <DependentUpon>DoneConsultWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\DonePayWindow.xaml.cs">
+      <DependentUpon>DonePayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\DonePromoWindow.xaml.cs">
+      <DependentUpon>DonePromoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\FalseAddressWindow.xaml.cs">
+      <DependentUpon>FalseAddressWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\FalseConsultWindow.xaml.cs">
+      <DependentUpon>FalseConsultWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\FalseEmailRegWindow.xaml.cs">
+      <DependentUpon>FalseEmailRegWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\FalseFIOWindow.xaml.cs">
+      <DependentUpon>FalseFIOWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\FalseNumberPhoneWindow.xaml.cs">
+      <DependentUpon>FalseNumberPhoneWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\FalsePromoWindow.xaml.cs">
+      <DependentUpon>FalsePromoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionTasks.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\CartService.cs" />
+    <Compile Include="Services\CatalogService.cs" />
+    <Compile Include="Services\ICartService.cs" />
+    <Compile Include="Services\ICatalogService.cs" />
+    <Compile Include="Services\IOrderService.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Views\WindowAdmin\AddProductWindow.xaml.cs">
+      <DependentUpon>AddProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminManagerWindow.xaml.cs">
+      <DependentUpon>AdminManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CartItemViewModel.cs" />
+    <Compile Include="Carts.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Categories.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultationRequests.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentUser.cs" />
+    <Compile Include="MessageWindow\DonePassWindow.xaml.cs">
+      <DependentUpon>DonePassWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\DoneRegWindow.xaml.cs">
+      <DependentUpon>DoneRegWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\FalseAuthWindow.xaml.cs">
+      <DependentUpon>FalseAuthWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\FalseEmailWindow.xaml.cs">
+      <DependentUpon>FalseEmailWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\FalseInputEmailWindow.xaml.cs">
+      <DependentUpon>FalseInputEmailWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\FalseRegWindow.xaml.cs">
+      <DependentUpon>FalseRegWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow\FasleCodeWindow.xaml.cs">
+      <DependentUpon>FasleCodeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItems.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderStatuses.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordResetCodes.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionOrders.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionStatuses.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionStatusLogs.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Products.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PromoCodes.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Roles.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StuldastolModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StuldastolModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StuldastolModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StuldastolModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StuldastolModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>StuldastolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CartWindow.xaml.cs">
+      <DependentUpon>CartWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CatalogMainWindow.xaml.cs">
+      <DependentUpon>CatalogMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CheckoutWindow.xaml.cs">
+      <DependentUpon>CheckoutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowAdmin\ConsultationRequestsWindow.xaml.cs">
+      <DependentUpon>ConsultationRequestsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConsultWindow.xaml.cs">
+      <DependentUpon>ConsultWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContactWindow.xaml.cs">
+      <DependentUpon>ContactWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowAdmin\CreatePromoCodeWindow.xaml.cs">
+      <DependentUpon>CreatePromoCodeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowAdmin\CreateUserWindow.xaml.cs">
+      <DependentUpon>CreateUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowAdmin\EditProductWindow.xaml.cs">
+      <DependentUpon>EditProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowAdmin\EmployeesWindow.xaml.cs">
+      <DependentUpon>EmployeesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowAdmin\OrderDetailsWindow.xaml.cs">
+      <DependentUpon>OrderDetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowAdmin\OrdersAdminWindow.xaml.cs">
+      <DependentUpon>OrdersAdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrdersWindow.xaml.cs">
+      <DependentUpon>OrdersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaymentWindow.xaml.cs">
+      <DependentUpon>PaymentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductDetailsWindow.xaml.cs">
+      <DependentUpon>ProductDetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterWindow.xaml.cs">
+      <DependentUpon>RegisterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ResetPasswordWindow.xaml.cs">
+      <DependentUpon>ResetPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowAdmin\PromoCodesWindow.xaml.cs">
+      <DependentUpon>PromoCodesWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MessageWindow\DoneConsultWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\DonePassWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\DonePayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\DonePromoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\DoneRegWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\FalseAddressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\FalseAuthWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\FalseConsultWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\FalseEmailRegWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\FalseEmailWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\FalseFIOWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\FalseInputEmailWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\FalseNumberPhoneWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\FalsePromoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\FalseRegWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow\FasleCodeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowAdmin\AddProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CatalogMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CheckoutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowAdmin\ConsultationRequestsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConsultWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ContactWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowAdmin\CreatePromoCodeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowAdmin\CreateUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowAdmin\EditProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowAdmin\EmployeesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowAdmin\OrderDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowAdmin\OrdersAdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrdersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PaymentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ResetPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowAdmin\PromoCodesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="StuldastolModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StuldastolModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="StuldastolModel.edmx.diagram">
+      <DependentUpon>StuldastolModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stone3.png" />
+    <Resource Include="Images\stone4.png" />
+    <Resource Include="Images\stone2.png" />
+    <Resource Include="Images\stone1.png" />
+    <Resource Include="Images\eye-off.png" />
+    <Resource Include="Images\eye.png" />
+    <Resource Include="Images\Done.png" />
+    <Resource Include="Images\False.png" />
+    <Resource Include="Images\stoneReg1.png" />
+    <Resource Include="Images\stoneReg2.png" />
+    <Resource Include="Images\StartRight.png" />
+    <Resource Include="Images\ImageStart.png" />
+    <Resource Include="Images\PhotoFirst.png" />
+    <Resource Include="Images\stoneConsult1.png" />
+    <Resource Include="Images\stoneConsult2.png" />
+    <Resource Include="Images\Map.png" />
+    <Resource Include="Images\Map2.png" />
+    <Resource Include="Images\stoneContact.png" />
+    <Resource Include="Images\stoneContact2.png" />
+    <Resource Include="Images\KiotoCat.JPG" />
+    <Resource Include="Images\NaraCat.JPG" />
+    <Resource Include="Images\StolCat.JPG" />
+    <Resource Include="Images\kioto.JPG" />
+    <Resource Include="Images\nara.JPG" />
+    <Resource Include="Images\stol.JPG" />
+    <Resource Include="Images\stoneCatalog.png" />
+    <Resource Include="Images\stoneCatalog2.png" />
+    <Resource Include="Images\Sr.png" />
+    <Resource Include="Images\Otmena.png" />
+    <Resource Include="Images\Cart.png" />
+    <Resource Include="Images\Like.png" />
+    <Resource Include="Images\Back.png" />
+    <Resource Include="Images\CartBut.png" />
+    <Resource Include="Images\OrdersBut.png" />
+    <Resource Include="Images\mastercard.png" />
+    <Resource Include="Images\visa.png" />
+    <Resource Include="Images\Nara2.jpg" />
+    <Resource Include="Images\Nara3.jpg" />
+    <Resource Include="Images\kioto1.jpg" />
+    <Resource Include="Images\kioto2.JPG" />
+    <Resource Include="Images\exit.png" />
+    <Resource Include="Images\icon.ico" />
+    <Content Include="StuldastolModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StuldastolModel.edmx</DependentUpon>
+      <LastGenOutput>StuldastolModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="StuldastolModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StuldastolModel.edmx</DependentUpon>
+      <LastGenOutput>StuldastolModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

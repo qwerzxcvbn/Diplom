@@ -1,0 +1,142 @@
+﻿<Window x:Class="StuldastolClient.Views.CartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StuldastolClient.Views"
+        mc:Ignorable="d"
+        Title="Корзина" SizeToContent="Height" Width="800"
+        WindowStyle="None" AllowsTransparency="True" 
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Заголовок -->
+            <RowDefinition Height="*"/>
+            <!-- Список товаров -->
+            <RowDefinition Height="Auto" MinHeight="170.957"/>
+            <!-- Сообщение, сумма, кнопки -->
+        </Grid.RowDefinitions>
+
+        <!-- Фоновые изображения -->
+        <Image Source="/Images/stone1.png" Margin="0,418,637,-43" Grid.RowSpan="3" Height="280"/>
+        <Image Source="/Images/stone2.png" Width="300" Margin="544,0,-44,209" Grid.RowSpan="3" Height="420"/>
+
+        <!-- Заголовок -->
+        <TextBlock Text="КОРЗИНА" FontSize="45" FontWeight="Bold" FontFamily="Century Gothic" HorizontalAlignment="Center" Margin="0,20,0,20" Foreground="#FF2D2D2D" Grid.Row="0" Width="211"/>
+        <Button x:Name="GoToCatalogButton" Width="50" Height="50" HorizontalAlignment="Left" Margin="10,0,0,0" Click="GoToCatalogButton_Click" Grid.Row="0">
+            <Image Source="/Images/Back.png" Stretch="Uniform"/>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="25">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFE6E6E6"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- Список товаров с прокруткой -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="20,4,20,38" Grid.Row="1" VerticalAlignment="Stretch" MaxHeight="400">
+            <ItemsControl x:Name="CartItemsControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" Margin="0,0,0,10" Padding="10" Background="White">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Изображение -->
+                                <Image Source="{Binding Product.ImagePath}" Width="100" Height="100" Stretch="Uniform" Grid.Column="0"/>
+                                <!-- Информация о товаре -->
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="{Binding Product.Name}" FontSize="18" FontFamily="Century Gothic" HorizontalAlignment="Left" TextWrapping="Wrap" MaxWidth="400"/>
+                                    <TextBlock FontSize="16" FontFamily="Century Gothic" Margin="0,5,0,0">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="Кол-во: {0}">
+                                                <Binding Path="Quantity"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <Border Background="#D1E9C7" CornerRadius="20" Margin="0,10,0,0" Width="120" Height="35" HorizontalAlignment="Left">
+                                        <TextBlock Text="{Binding TotalPrice, StringFormat={}{0:N2} р}" FontSize="16" FontFamily="Century Gothic" Foreground="#FF2D2D2D" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"/>
+                                    </Border>
+                                </StackPanel>
+                                <!-- Кнопка удаления -->
+                                <Button x:Name="DeleteButton" Click="DeleteButton_Click" Grid.Column="2" Width="30" Height="30" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Image Source="/Images/close.png" Width="20" Height="20"/>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#FFE6E6E6"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <Image x:Name="ImageCart" Source="/Images/CartBut.png" Height="400" Width="400" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0" Grid.Row="1" Visibility="Collapsed"/>
+        <TextBlock x:Name="EmptyCartText" Text="КОРЗИНА ПУСТА" FontSize="45" FontFamily="Century Gothic" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Foreground="Black" Margin="231,430,0,0" Grid.Row="1" Visibility="Collapsed"/>
+
+        <!-- Нижняя часть (сообщение, сумма, кнопки) -->
+        <StackPanel Grid.Row="2" Margin="20,6,20,20" Name="CheckSP" Visibility="Collapsed">
+            <!-- Общая сумма -->
+            <TextBlock x:Name="TotalAmountText" Text="2 товара на сумму: 50900р" FontSize="25" FontFamily="Century Gothic" HorizontalAlignment="Right" Margin="0,0,0,20" Foreground="#FF2D2D2D"/>
+
+            <!-- Кнопка "Оформить заказ" -->
+            <Button x:Name="CheckoutButton" Content="ОФОРМИТЬ ЗАКАЗ" Width="400" Height="60" HorizontalAlignment="Center" Click="CheckoutButton_Click" FontSize="28">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF2D2D2D"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontFamily" Value="Century Gothic"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF636363"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

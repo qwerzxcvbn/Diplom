@@ -1,0 +1,126 @@
+﻿<Window x:Class="StuldastolClient.Views.WindowAdmin.OrderDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StuldastolClient.Views.WindowAdmin"
+        mc:Ignorable="d"
+        Title="Детали заказа" Height="620" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" Icon="/Images/icon.ico">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="CloseButton" Click="CloseButton_Click" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0">
+            <Image Source="/Images/Close.png" Width="25" Height="25"/>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="15">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFE6E6E6"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock Text="{Binding OrderIdText}" FontSize="24" FontWeight="Bold" FontFamily="Century Gothic" Margin="0,0,0,10"/>
+                <TextBlock FontSize="16" FontFamily="Century Gothic">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Покупатель: {0} {1}">
+                            <Binding Path="UserFirstName"/>
+                            <Binding Path="UserLastName"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock FontSize="16" FontFamily="Century Gothic" Margin="0 0 0 10">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Телефон: {0}">
+                            <Binding Path="UserPhone"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock FontSize="16" FontFamily="Century Gothic">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Тип доставки: {0}">
+                            <Binding Path="DeliveryType"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock FontSize="16" FontFamily="Century Gothic" Margin="0 0 0 10">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Статус: {0}">
+                            <Binding Path="OrderStatusName"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock FontSize="16" FontFamily="Century Gothic">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Промокод: {0}">
+                            <Binding Path="PromoCode"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text="Товары:" FontSize="18" FontWeight="Bold" FontFamily="Century Gothic" Margin="0,10,0,5"/>
+                <ItemsControl ItemsSource="{Binding Products}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" Margin="0,0,0,10" Padding="10">
+                                <StackPanel Margin="0,0,0,10">
+                                <TextBlock FontSize="18" FontWeight="Bold" FontFamily="Century Gothic" Margin="0 0 0 10">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="Название: {0}">
+                                            <Binding Path="Product.Name"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock FontSize="16" FontFamily="Century Gothic">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="Тип дерева: {0}">
+                                            <Binding Path="Product.WoodType"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock FontSize="16" FontFamily="Century Gothic">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="Тип масла: {0}">
+                                            <Binding Path="Product.OilColor"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                    <TextBlock FontSize="16" FontFamily="Century Gothic" Margin="0 0 0 10">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="Ткань: {0}">
+                                            <Binding Path="Product.FabricType"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock FontSize="16" FontFamily="Century Gothic">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="Статус производства: {0}">
+                                            <Binding Path="ProductionStatusName"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

@@ -1,0 +1,129 @@
+﻿<Window x:Class="StuldastolClient.Views.WindowAdmin.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Добавить товар" SizeToContent="Height" Width="450" WindowStartupLocation="CenterScreen" WindowStyle="None" Icon="/Images/icon.ico">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="GoToCatalogButton" Width="30" Height="30" HorizontalAlignment="Left" Margin="0,0,0,5" Click="GoToCatalogButton_Click" Grid.Row="0">
+            <Image Source="/Images/Back.png" Stretch="Uniform"/>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="17">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFE6E6E6"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <TextBlock Grid.Row="0" Text="Добавить новый товар" FontSize="25"  FontFamily="Century Gothic" Margin="40,0,0,10"/>
+
+        <!-- Загрузка фотографии -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,10">
+            <Button x:Name="UploadImageButton" Content="Загрузить фото" Width="150" Height="30" Click="UploadImageButton_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF2D2D2D"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontFamily" Value="Century Gothic"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF636363"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <TextBlock x:Name="ImagePathTextBlock" Text="Фото не выбрано" FontSize="16" FontFamily="Century Gothic" Margin="10,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Название -->
+        <TextBlock Grid.Row="2" Text="Название:" FontSize="16" FontFamily="Century Gothic" Margin="0,0,0,5"/>
+        <TextBox x:Name="NameTextBox" Grid.Row="2" Height="30" FontSize="21" FontFamily="Century Gothic" Margin="0,25,0,10"/>
+
+        <!-- Категория -->
+        <TextBlock Grid.Row="3" Text="Категория:" FontSize="16" FontFamily="Century Gothic" Margin="0,0,0,5"/>
+        <ComboBox x:Name="CategoryComboBox" Grid.Row="3" Height="30" FontSize="21" FontFamily="Century Gothic" Margin="0,25,0,10" SelectionChanged="CategoryComboBox_SelectionChanged" BorderBrush="#FFFFFDFD"/>
+
+        <!-- Тип дерева -->
+        <TextBlock Grid.Row="4" Text="Тип дерева:" FontSize="16" FontFamily="Century Gothic" Margin="0,0,0,5"/>
+        <TextBox x:Name="WoodTypeTextBox" Grid.Row="4" Height="30" FontSize="21" FontFamily="Century Gothic" Margin="0,25,0,10"/>
+
+        <!-- Тип масла -->
+        <TextBlock Grid.Row="5" Text="Тип масла:" FontSize="16" FontFamily="Century Gothic" Margin="0,0,0,5"/>
+        <TextBox x:Name="OilColorTextBox" Grid.Row="5" Height="30" FontSize="21" FontFamily="Century Gothic" Margin="0,25,0,10"/>
+
+        <!-- Ткань -->
+        <TextBlock Grid.Row="6" Text="Ткань:" FontSize="16" FontFamily="Century Gothic" Margin="0,0,0,5"/>
+        <TextBox x:Name="FabricTypeTextBox" Grid.Row="6" Height="30" FontSize="21" FontFamily="Century Gothic" Margin="0,25,0,10"/>
+
+        <!-- Поле для ручного ввода описания (для категории "Стол") -->
+        <TextBlock Grid.Row="7" Text="Описание:" FontSize="16" FontFamily="Century Gothic" Margin="0,0,0,5" Visibility="Collapsed" x:Name="DescriptionLabel"/>
+        <TextBox x:Name="DescriptionTextBox" Grid.Row="7" FontSize="14" FontFamily="Century Gothic" Margin="0,25,0,10" Height="100" AcceptsReturn="True" TextWrapping="Wrap" Visibility="Collapsed"/>
+
+        <!-- Цена -->
+        <TextBlock Grid.Row="8" Text="Цена:" FontSize="16" FontFamily="Century Gothic" Margin="0,0,0,5"/>
+        <TextBox x:Name="PriceTextBox" Grid.Row="8" Height="30" FontSize="21" FontFamily="Century Gothic" Margin="0,25,0,20"/>
+
+        <!-- Кнопка сохранения -->
+        <Button x:Name="SaveButton" Grid.Row="9" Content="Сохранить" Width="300" Height="40" HorizontalAlignment="Center" Click="SaveButton_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF2D2D2D"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontFamily" Value="Century Gothic"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF636363"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</Window>
